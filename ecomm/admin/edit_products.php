@@ -30,7 +30,7 @@ include('includes/header.php');
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="mb-0" >Select Category</label>
-                                    <select name="category_id" class="form-select mb-2">
+                                    <select name="category_id" class="form-select mb-2" aria-label="Default select example">
                                     <option selected>Select Category List</option>
 <?php
                                         $categories = getAll("categories");
@@ -38,7 +38,7 @@ include('includes/header.php');
                                         if(mysqli_num_rows($categories) > 0) {
                                             foreach($categories as $item){
 ?>
-                                                <option value="<?= $item['id']; ?>" <?= $data['category_id'] == $item['id']?'selected':'' ?>><?= $item['name']; ?></option>
+                                                <option value="<?= $item['id']; ?>"<?= $data['category_id'] == $item['id']?'selected':'' ?>><?= $item['name']; ?></option>
 <?php
                                             }     
                                         } else {

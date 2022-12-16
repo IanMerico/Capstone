@@ -20,6 +20,33 @@ function getbyID($table, $id) {
 
     }
 
+function getAllOrders() {
+
+    global $con;
+    $query = "SELECT * FROM orders WHERE status='0'";
+    $query_run = mysqli_query($con, $query);
+    return($query_run);
+
+    }
+
+function getOrdershistory() {
+
+    global $con;
+    $query = "SELECT * FROM orders WHERE status !='0'";
+    $query_run = mysqli_query($con, $query);
+    return($query_run);
+
+    }
+
+function checkTrackingNoValid($trackingNo) {
+
+    global $con;
+    $query = "SELECT * FROM orders WHERE tracking_no='$trackingNo'";
+    $query_run = mysqli_query($con, $query);
+    return($query_run);
+
+        }
+
 function redirect($url, $message) {
 
     $_SESSION['message'] = $message;

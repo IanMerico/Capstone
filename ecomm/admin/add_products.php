@@ -19,7 +19,7 @@ include('includes/header.php');
                             <div class="row">
                                 <div class="col-md-12">
                                     <label class="mb-0" >Select Category</label>
-                                    <select class="form-select mb-2">
+                                    <select name="category_id" class="form-select mb-2">
                                     <option selected>Select Category List</option>
 <?php
                                         $categories = getAll("categories");

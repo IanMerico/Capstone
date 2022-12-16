@@ -178,7 +178,7 @@
             $update_filename = $old_image;
         }
 
-        $update_query_products = "UPDATE products SET name='$name', slug='$slug', small_description='$small_description', description='$description', original_price='$original_price', selling_price='$selling_price', qty='$qty', meta_title='$meta_title', meta_description='$meta_description', status='$status', trending='$trending', image='$update_filename' WHERE id='$product_id'";
+        $update_query_products = "UPDATE products SET category_id='$category_id', name='$name', slug='$slug', small_description='$small_description', description='$description', original_price='$original_price', selling_price='$selling_price', qty='$qty', meta_title='$meta_title', meta_description='$meta_description', status='$status', trending='$trending', image='$update_filename' WHERE id='$product_id'";
 
         $update_query_products_run = mysqli_query($con, $update_query_products);
 
@@ -219,6 +219,15 @@
             echo 500;
         }
         
+    }
+    else if(isset($_POST['update_Orders_btn'])) {
+        $track_no = $_POST['tracking_no'];
+        $order_status = $_POST['order_status'];
+
+        $updateOrder_query = "UPDATE orders SET status='$order_status' WHERE tracking_no='$track_no'";
+        $updateOrder_query_run = mysqli_query($con, $updateOrder_query);
+
+        redirect("view_order.php?t=$track_no", "Order Status Updated Successfully");
     }
     else {
         header('Location: http://localhost/capstone/ecomm/admin/');
