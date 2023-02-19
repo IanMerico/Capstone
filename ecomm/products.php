@@ -11,9 +11,9 @@
     $cid = $category['id'];
 
     ?>
-    <div class="py-3 bg-primary">
+    <div class="py-1 bg-primary text-center">
         <div class="container">
-            <h6 class="text-white">
+            <h6 class="text-white m-1">
                 <a href="categories.php" class="text-white">
                 Home / 
                 </a>

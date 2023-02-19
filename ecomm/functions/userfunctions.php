@@ -52,11 +52,40 @@ function getCartItems() {
 
     }
 
+function getCartCount($id) {
+
+    global $con; 
+    $userid = $_SESSION['auth_user']['user_id'];
+    $cartcount = "SELECT count(id) AS cart_count FROM carts WHERE user_id='$userid'";
+    $queryCount = mysqli_query($con, $cartcount);
+    $resultcount = mysqli_fetch_assoc($queryCount);
+    return($queryCount);
+}
+function getwishlistCount($id) {
+
+    global $con; 
+    $userid = $_SESSION['auth_user']['user_id'];
+    $cartcount = "SELECT count(id) AS wishlist_count FROM wishlist WHERE user_id='$userid'";
+    $queryCount = mysqli_query($con, $cartcount);
+    $resultcount = mysqli_fetch_assoc($queryCount);
+    return($queryCount);
+}
+
+function getwishlistItems() {
+
+        global $con;
+        $userid = $_SESSION['auth_user']['user_id'];
+        $query = "SELECT c.id as cid, c.product_id, c.prod_qty, p.id as pid, p.name, p.image, p.selling_price ,p.qty FROM wishlist c, products p WHERE c.product_id=p.id AND c.user_id='$userid' ORDER BY c.id DESC";
+        $query_run = mysqli_query($con, $query);
+        return($query_run);
+    
+    }
+
 function getOrders() {
 
     global $con;
     $userid = $_SESSION['auth_user']['user_id'];
-    $query = "SELECT * FROM orders WHERE user_id='$userid' ORDER BY id DESC";
+    $query = "SELECT * FROM orders WHERE user_id='$userid' ORDER BY id DESC ";
     $query_run = mysqli_query($con, $query);
     return($query_run);
 

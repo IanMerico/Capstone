@@ -40,6 +40,7 @@
             // $user_id = $_SESSION['auth_user']['user_id'];
             $insert_query = "INSERT INTO orders (tracking_no, user_id, name, email, phone, address, pincode, total_price, payment_mode, payment_id, created_at) VALUES ('$tracking_no', '$userid', '$name', '$email', '$phone', '$address', '$pincode', '$totalPrice', '$payment_mode', '$payment_id', NOW() )";
 
+
             $insert_query_run = mysqli_query($con, $insert_query);
 
             if($insert_query_run) {

@@ -25,9 +25,9 @@ if(isset($_GET['t'])) {
 }
 $data = mysqli_fetch_array($Order_data);
 ?>
-<div class="py-3 bg-primary">
+<div class="py-1 bg-primary text-center">
     <div class="container">
-        <h6 class="text-white">
+        <h6 class="text-white m-1">
             <a href="index.php" class="text-white" >Home</a> 
              / 
             <a href="my_orders.php" class="text-white">My Orders</a> 
@@ -120,7 +120,7 @@ $data = mysqli_fetch_array($Order_data);
                                                                 <?= $item['name'];?>
                                                             </td>
                                                             <td class="align-middle">
-                                                                <?= $item['price'];?>
+                                                                <?= number_format($item['price'],2);?>
                                                             </td>
                                                             <td class="align-middle">
                                                                 x<?= $item['orderQty'];?>
@@ -136,7 +136,7 @@ $data = mysqli_fetch_array($Order_data);
                                     </table>
 
                                     <hr>
-                                    <h4>Total Price: <span class="float-end"> <?= $data['total_price'];?></span></h4>
+                                    <h4>Total Price: <span class="float-end"> <?= number_format($data['total_price']);?></span></h4>
                                     <hr>
                                     <label class="fw-bold">Payment Method</label>
                                     <div class="border p-1 mb-3">
@@ -144,20 +144,20 @@ $data = mysqli_fetch_array($Order_data);
                                     </div>
                                     
                                     <label class="fw-bold">Status</label>
-                                    <div class="border p-1 mb-3">
+                                    <div class="border p-0 mb-3 text-center">
                                         
                                         <?php
                                             if($data['status'] == 0) {
 
-                                                echo "Under Process";
+                                                echo "<div class='p-0 bg-warning text-dark'>Under Process</div>";
 
                                             } else if($data['status'] == 1) {
 
-                                                echo "Completed";
+                                                echo "<div class='p-0 bg-success text-white'>Completed</div>";
                                                 
                                             } else if($data['status'] == 2) {
 
-                                                echo "Cancelled";
+                                                echo "<div class='p-0 bg-danger text-white'>Cancelled</div>";;
                                                 
                                             }
                                         ?>
@@ -171,5 +171,5 @@ $data = mysqli_fetch_array($Order_data);
         </div>
     </div>
 </div>
-<?php include('includes/footer.php') ?>
+<?php include('footer_information.php'); ?>
 

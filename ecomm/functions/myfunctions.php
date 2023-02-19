@@ -47,6 +47,7 @@ function checkTrackingNoValid($trackingNo) {
 
         }
 
+
 function redirect($url, $message) {
 
     $_SESSION['message'] = $message;

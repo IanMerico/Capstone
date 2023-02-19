@@ -35,6 +35,32 @@ include('../config/dbcon.php');
                         }
                     break;
 
+                    case "addwishlist":
+                        $product_id = $_POST['product_id']; 
+                        $prod_qty = $_POST['prod_qty']; 
+                        $user_id = $_SESSION['auth_user']['user_id'];
+
+                        $chk_existing_Cart = "SELECT * FROM wishlist WHERE product_id='$product_id' AND user_id='$user_id'";
+                        $chk_existing_Cart_run = mysqli_query($con, $chk_existing_Cart);
+
+                        if(mysqli_num_rows($chk_existing_Cart_run) > 0) {
+
+                            echo "Existing";
+                        }
+                        else {     
+
+                            $insert_query = "INSERT INTO wishlist (user_id, product_id, prod_qty, created_at, updated_at) VALUES ('$user_id', '$product_id', '$prod_qty', NOW(), NOW())";
+
+                            $insert_query_run = mysqli_query($con, $insert_query);
+
+                            if($insert_query_run) {
+                                echo 201;
+                            } else {
+                                echo 500;
+                            }
+                        }
+                    break;
+
                 case "update":
                         $product_id = $_POST['product_id']; 
                         $prod_qty = $_POST['prod_qty']; 
@@ -70,6 +96,30 @@ include('../config/dbcon.php');
                         if(mysqli_num_rows($chk_existing_Cart_run) > 0) {
 
                             $delete_query = "DELETE FROM carts WHERE id='$cart_id'";
+                            $delete_query_run = mysqli_query($con, $delete_query);
+                            
+                            if($delete_query_run) {
+                                echo 200;
+                            } else {
+                                echo "Something went wrong!";
+                            }
+                        }
+                        else {     
+
+                            echo "Something went wrong!";
+                        }
+                    break;
+                    // Delete Item from Wishlist
+                    case "deleteWishlist":
+                        $cart_id = $_POST['cart_id'];
+                        $user_id = $_SESSION['auth_user']['user_id'];
+
+                        $chk_existing_Cart = "SELECT * FROM wishlist WHERE id='$cart_id' AND user_id='$user_id'";
+                        $chk_existing_Cart_run = mysqli_query($con, $chk_existing_Cart);
+
+                        if(mysqli_num_rows($chk_existing_Cart_run) > 0) {
+
+                            $delete_query = "DELETE FROM wishlist WHERE id='$cart_id'";
                             $delete_query_run = mysqli_query($con, $delete_query);
                             
                             if($delete_query_run) {

@@ -64,7 +64,7 @@
 
             $_SESSION['auth'] = true; //This is use for authenthication
             $userdata = mysqli_fetch_array($login_query_run);
-            $userid = $userdata['id'];
+            $userid = $userdata['user_id'];
             $username = $userdata['name'];
             $useremail = $userdata['email'];
             $role_as = $userdata['role_as'];

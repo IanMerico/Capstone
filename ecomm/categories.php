@@ -4,9 +4,12 @@ include('includes/header.php');
 
 
 ?>
-<div class="py-3 bg-primary">
+<div class="py-1 bg-primary text-center">
     <div class="container">
-        <h6 class="text-white">Home / Collections</h6>
+        <h6 class="text-white m-1">
+            <a href="index.php" class="text-white" >Home</a>
+            / All Collections
+        </h6>
     </div>
 </div>
 <div class="py-5">

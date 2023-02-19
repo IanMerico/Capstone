@@ -5,11 +5,11 @@ include('includes/header.php');
 include('authenticate.php');
 
 ?>
-<div class="py-3 bg-primary">
+<div class="py-1 bg-primary text-center">
     <div class="container">
-        <h6 class="text-white">
-            <a href="index.php" class="text-white" >Home</a> 
-             / 
+        <h6 class="text-white m-1">
+            <a href="index.php" class="text-white" >Home</a>
+            / 
             <a href="checkout.php" class="text-white">Checkout</a> 
         </h6>
     </div>
@@ -56,6 +56,7 @@ include('authenticate.php');
                             ?>
                                 <div class="mb-1 border">
                                     <div class="row align-items-center">
+                                    <!-- <?= $CartItem['user_id']; ?> -->
                                         <div class="col-md-2">
                                             <img src="uploads/<?= $CartItem['image']; ?>" alt="Image" width="60px">
                                         </div>
@@ -63,7 +64,7 @@ include('authenticate.php');
                                             <label><?= $CartItem['name']; ?></label>
                                         </div>
                                         <div class="col-md-3">
-                                            <label><?= $CartItem['selling_price']; ?></label>
+                                            <label><?= number_format($CartItem['selling_price'],2); ?></label>
                                         </div>
                                         <div class="col-md-2">
                                             <label>x<?= $CartItem['prod_qty']; ?></label>
@@ -75,7 +76,7 @@ include('authenticate.php');
                                 }
                             ?>
                             <hr>
-                            <h5>Total Price: <span class="float-end fw-bold"><?= $totalPrice ?></span></h5>
+                            <h5>Total Price: <span class="float-end fw-bold"><?= number_format($totalPrice,2) ?></span></h5>
                             <div class="class">
                                 <input type="hidden" name="payment_mode" value="COD">
                                 <button type="submit" name="placeOrderBtn" class="btn btn-primary w-100">Confirm and place order | COD</button>

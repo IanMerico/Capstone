@@ -5,16 +5,16 @@ include('includes/header.php');
 include('authenticate.php');
 
 ?>
-<div class="py-3 bg-primary">
+<div class="py-1 bg-primary text-center">
     <div class="container">
-        <h6 class="text-white">
-            <a href="index.php" class="text-white" >Home</a> 
-             / 
+        <h6 class="text-white m-1">
+            <a href="index.php" class="text-white" >Home</a>
+            /
             <a href="my_orders.php" class="text-white">My Orders</a> 
         </h6>
     </div>
 </div>
-<div class="py-5">
+<div class="py-5 mb-5">
     <div class="container">
         <div class="">
             <div class="row">
@@ -40,8 +40,9 @@ include('authenticate.php');
                                         <tr>
                                             <td><?= $item['id']; ?></td>
                                             <td><?= $item['tracking_no'];?></td>
-                                            <td>Php: <?= $item['total_price']; ?></td>
-                                            <td><?= $item['created_at']; ?></td>
+                                            <td>Php: <?= number_format($item['total_price'],2); ?></td>
+                                            <!-- <td><?= $item['created_at']; ?></td> -->
+                                            <td><?php echo date('M j g:i A', strtotime($item["created_at"]));  ?></td>
                                             <td>
                                                 <a href="view_order.php?t=<?= $item['tracking_no']; ?>" class="btn btn-primary">View Details</a>
                                             </td>
@@ -64,5 +65,5 @@ include('authenticate.php');
         </div>
     </div>
 </div>
-<?php include('includes/footer.php') ?>
+<?php include('footer_information.php'); ?>
 

@@ -5,9 +5,9 @@ include('includes/header.php');
 include('authenticate.php');
 
 ?>
-<div class="py-3 bg-primary">
+<div class="py-1 bg-primary text-center">
     <div class="container">
-        <h6 class="text-white">
+        <h6 class="text-white m-1">
             <a href="index.php" class="text-white" >Home</a> 
              / 
             <a href="cart.php" class="text-white">Cart</a> 
@@ -48,17 +48,17 @@ include('authenticate.php');
                                         <div class="col-md-2">
                                             <img src="uploads/<?= $CartItem['image']; ?>" alt="Image" width="80px">
                                         </div>
-                                        <div class="col-md-3">
-                                            <h5><?= $CartItem['name']; ?></h5>
+                                        <div class="col-md-3 ">
+                                            <h6><?= $CartItem['name']; ?></h6>
                                         </div>
                                         <div class="col-md-3">
-                                            <h5>Php: <?= $CartItem['selling_price']; ?></h5>
+                                            <h6>Php: <?= number_format($CartItem['selling_price'],2); ?></h6>
                                         </div>
                                         <div class="col-md-2">
                                             <input type="hidden" class="prodId" value="<?= $CartItem['product_id']; ?>">
-                                            <div class="input-group mb-3" style="width:130px">
+                                            <div class="input-group mb-1" style="width:110px">
                                                 <button class="input-group-text decrement-btn updateQty" >-</button>
-                                                    <input type="text" class="form-control text-center bg-white input_qty" value="<?= $CartItem['prod_qty']; ?>" disabled >
+                                                    <input type="text" class="form-control text-center bg-white input_qty " value="<?= $CartItem['prod_qty']; ?>" disabled >
                                                 <button class="input-group-text increment-btn updateQty">+</button>
                                             </div>
                                         </div>
@@ -90,5 +90,6 @@ include('authenticate.php');
         </div>
     </div>
 </div>
-<?php include('includes/footer.php') ?>
+<?php include('footer_information.php'); ?>
+<!-- include('includes/footer.php') -->
 
