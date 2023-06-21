@@ -1,27 +1,31 @@
 <?php 
+    $titlePages = "Available Products";    
     include('functions/userfunctions.php');
     include('includes/header.php');
 
     if(isset($_GET['category'])) {
-
     $category_slug = $_GET['category'];
     $category_data = getSlugactive("categories", $category_slug);
     $category = mysqli_fetch_array($category_data);
     if($category) {
     $cid = $category['id'];
-
     ?>
     <div class="py-1 bg-primary text-center">
-        <div class="container">
-            <h6 class="text-white m-1">
-                <a href="categories.php" class="text-white">
-                Home / 
-                </a>
-                <a href="categories.php" class="text-white">
-                Collections / 
-                </a>
+        <div class="container text-justify">
                 <?= $category['name']; ?>
-            </h6>
+            <nav aria-label="breadcrumb" >
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item" >
+                        <a href="index.php" class="text-dark">Home</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="categories.php" class="text-dark">Collections</a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="#" class="text-dark"><?= $category['name']; ?></a>
+                    </li>
+                </ol>
+            </nav>
         </div>
     </div>
     <div class="py-3">
@@ -42,8 +46,12 @@
                                     <a href="product_view.php?product=<?= $item['slug']; ?>">
                                         <div class="card shadow">
                                             <div class="card-body">
-                                                <img src="uploads/<?= $item['image']; ?>" alt="Product Image" class="w-100">
-                                                <h4 class="text-center"><?= $item['name']; ?></h4>
+                                            <?php 
+                                            $image_array = array($item['image']);
+                                            $first_image = explode(' ', $image_array[0])[0];
+                                        ?>
+                                                <img src="uploads/<?=  $first_image; ?>" alt="Product Image" class="w-100">
+                                                <h6 class="text-center"><?= $item['name']; ?></h6>
                                             </div>
                                         </div>
                                     </a>
@@ -60,10 +68,7 @@
             </div>
         </div>
     </div>
-    <?php 
-
-                
-            
+<?php  
             } 
             else {
                 echo "Something went wrong";
@@ -72,4 +77,5 @@
             echo "Something went wrong";
         }
 
-include('includes/footer.php'); ?>
+    include('includes/footer.php'); 
+?>

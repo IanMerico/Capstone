@@ -7,3 +7,6 @@ const navLinks = document.querySelectorAll('nav a').forEach(link => {
         link.classList.add('active');
     }
 });
+
+
+

@@ -1,7 +1,9 @@
 <?php 
 
+$titlePage = "Add Products";
 include('../middleware/adminMidleware.php');
 include('includes/header.php');
+include('includes/navbar.php');
 
 ?>
 
@@ -38,58 +40,64 @@ include('includes/header.php');
                                 </div>
                                 <div class="col-md-6">
                                     <label class="mb-0">Name</label>
-                                    <input type="text" name="name" placeholder="Enter Category Name" class="form-control" required>
+                                    <input type="text" name="name" placeholder="Enter Product Name" class="form-control" required>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="mb-0">Slug</label>
+                                <div class="col-md-6 mb-2">
+                                    <label class="mb-0">Slug <small>(url name)</small></label>
                                     <input type="text" name="slug" placeholder="Enter  Slug" class="form-control" required>
                                 </div>
-                                <div class="col-md-12">
-                                    <label class="mb-0">Small Description</label>
+                                <div class="col-md-12 mb-2">
+                                    <label class="mb-0">Small Description <small><i>(text string that is used to create a URL for a web page or post.)</i></small></label>
                                     <textarea rows="3" name="small_description" placeholder="Enter Small Description" class="form-control" required></textarea>
                                 </div>
-                                <div class="col-md-12">
-                                    <label class="mb-0">Description</label>
-                                    <textarea rows="3" name="description" placeholder="Enter Description" class="form-control"></textarea>
+                                <div class="col-md-12 mb-2">
+                                    <label class="mb-0">Description <small><i>(short description of the product content)</i></small></label>
+                                    <textarea rows="3" id="productsdescription" name="description" placeholder="Enter Description" class="form-control"></textarea>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 mb-2">
                                     <label class="mb-0">Original Price</label>
                                     <input type="text" name="original_price" placeholder="Enter Price" class="form-control" required>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-6 mb-2">
                                     <label class="mb-0">Selling Price</label>
                                     <input type="text" name="selling_price" placeholder="Enter  Selling Price" class="form-control" required>
                                 </div>
-                                <div class="col-md-12">
+                                <div class="col-md-6 mb-2">
+                                    <label class="mb-0">Shipping fee</label>
+                                    <input type="text" name="fee" placeholder="Enter  shipping fee" class="form-control" required>
+                                </div>
+                                <div class="col-md-12 mb-2">
                                     <label class="mb-0">Upload Image</label>
-                                    <input type="file" name="image" class="form-control " required >
+                                    <input type="file" name="image[]" multiple class="form-control mb-1" required >
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-2">
                                         <label class="mb-0">Quantity</label>
                                         <input type="number" name="qty" placeholder="Enter  Quantity" class="form-control" required>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-3 ">
                                         <label class="mb-0">Status</label><br>
                                         <input type="checkbox" name="status">
+                                        <!-- <input type="checkbox" name="status" value="status" onclick="toggleCheckboxes(this)"> -->
                                     </div>
                                     <div class="col-md-3">
                                         <label class="mb-0">Trending</label><br>
                                         <input type="checkbox" name="trending">
+                                        <!-- <input type="checkbox" name="trending" value="trending" onclick="toggleCheckboxes(this)"> -->
                                     </div>
                                 </div>
-                                <div class="col-md-12">
-                                    <label class="mb-0">Meta Title</label>
+                                <!-- <div class="col-md-12 mb-2">
+                                    <label class="mb-0 mb-2">Meta Title <small><i>(HTML element that specifies the title of a web page)</i></small></label>
                                     <input type="text" name="meta_title" placeholder="Enter meta title" class="form-control">
                                 </div>
-                                <div class="col-md-12">
-                                    <label class="mb-0">Meta Description</label>
+                                <div class="col-md-12 mb-2">
+                                    <label class="mb-0">Meta Description <small><i>(HTML element that provides a brief summary of the content of a web page.)</i> </small></label>
                                     <textarea rows="3" name="meta_description" placeholder="Enter meta description" class="form-control"></textarea>
                                 </div>
-                                <div class="col-md-12">
-                                    <label class="mb-0">Meta Keywords</label>
+                                <div class="col-md-12 mb-2">
+                                    <label class="mb-0">Meta Keywords <small><i>(Meta keywords are an HTML element that provides a list of relevant keywords or phrases that describe the content of a web page. )</i> </small></label>
                                     <textarea rows="3" name="meta_keywords" placeholder="Enter meta keywords" class="form-control"></textarea>
-                                </div>
+                                </div> -->
                                 <div class="col-md-12 mt-2">
                                     <button type="submit" class="btn btn-primary" name="add_product_btn">Save</button>
                                 </div>

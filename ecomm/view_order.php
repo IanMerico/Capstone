@@ -1,5 +1,5 @@
 <?php 
-
+$titlePages = "Order View";
 include('functions/userfunctions.php');
 include('includes/header.php');
 include('authenticate.php');
@@ -26,80 +26,87 @@ if(isset($_GET['t'])) {
 $data = mysqli_fetch_array($Order_data);
 ?>
 <div class="py-1 bg-primary text-center">
-    <div class="container">
-        <h6 class="text-white m-1">
-            <a href="index.php" class="text-white" >Home</a> 
-             / 
-            <a href="my_orders.php" class="text-white">My Orders</a> 
-            /
-            <a href="#" class="text-white">View Order</a>
-        </h6>
+    <div class="container text-justify">
+        <nav aria-label="breadcrumb" >
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item" >
+                    <a href="index.php" class="text-dark">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="my_orders.php" class="text-dark">My Orders</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="#" class="text-dark">View Order</a>
+                </li>
+            </ol>
+        </nav>
     </div>
 </div>
 <div class="py-5">
     <div class="container">
         <div class="">
-            <div class="row">
+            <div class="row textfontsize">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header bg-primary">
-                            <span class="text-white fs-4">View Order</span> 
+                            <span class="text-dark fs-4">View Order</span> 
                             <a href="my_orders.php" class="btn btn-warning float-end"> <i class="fa fa-reply"></i> Back</a>
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4>Delivery Details</h4>
+                                    <h4>Shipping address</h4>
                                     <hr>
                                     <div class="row">
                                         <div class="col-md-12 mb-2">
-                                            <label class="fw-bold">Name</label>
-                                            <div class="border p-1">
-                                                <?= $data['name'];?>
+                                                <div class="border p-1">
+                                                    <label class="fw-bolder">Date:&nbsp;</label><?= date('F j Y h:i:s A', strtotime($data['created_at']));?>              
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12 mb-2">
-                                            <label class="fw-bold">Email</label>
-                                            <div class="border p-1">
-                                                <?= $data['email'];?>
+                                            <div class="col-md-12 mb-2">
+                                                <div class="border p-1">
+                                                    <label class="fw-bolder">Order ID:&nbsp;</label><?= $data['tracking_no'];?>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12 mb-2">
-                                            <label class="fw-bold">Phone</label>
-                                            <div class="border p-1">
-                                                <?= $data['phone'];?>
+                                            <div class="col-md-12 mb-2">
+                                                <div class="border p-1">
+                                                        <label class="fw-bolder">Full name:&nbsp;</label>
+                                                        <?= $data['name'];?>&nbsp;<?= $data['lname'];?>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12 mb-2">
-                                            <label class="fw-bold">Tracking No</label>
-                                            <div class="border p-1">
-                                                <?= $data['tracking_no'];?>
+                                            <div class="col-md-12 mb-2">      
+                                                <div class="border p-1">
+                                                    <label class="fw-bolder">Address:&nbsp;</label>
+                                                    <?= $data['street_address'];?>
+                                                    <?= $data['barangay'];?>
+                                                    <?= $data['city'];?>
+                                                    <?= $data['province'];?>
+                                                    <?= $data['zipcode'];?>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12 mb-2">
-                                            <label class="fw-bold">Address</label>
-                                            <div class="border p-1">
-                                                <?= $data['address'];?>
+                                            <div class="col-md-12 mb-2">                                 
+                                                <div class="border p-1">
+                                                    <label class="fw-bolder">Contact #:&nbsp;</label>
+                                                        <?= $data['phone'];?>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12 mb-2">
-                                            <label class="fw-bold">Zip Code</label>
-                                            <div class="border p-1">
-                                                <?= $data['pincode'];?>
+                                            <div class="col-md-12 mb-2">                                 
+                                                <div class="border p-1">
+                                                    <label class="fw-lighter">Buyer remarks*:&nbsp;</label>
+                                                        <textarea name="foo" id="foo" class="form-control bg-white fw-lighter" row="5" disabled><?= $data['comments'];?></textarea>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-
-                                </div>
                                 <div class="col-md-6">
                                     <h4>Order Details</h4>
                                     <hr>
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Product</th>
-                                                <th>Price</th>
-                                                <th>Quantity</th>
+                                                <th class="fw-bolder">Product</th>
+                                                <th class="fw-bolder">Price</th>
+                                                <th class="fw-bolder">Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -116,11 +123,15 @@ $data = mysqli_fetch_array($Order_data);
                                                         ?>
                                                         <tr>
                                                             <td class="align-middle">
-                                                                <img src="uploads/<?= $item['image'];?>" width="50px" height="50px" alt="<?= $item['name'];?>">
+                                                            <?php 
+                                                                $image_array = array($item['image']);
+                                                                $first_image = explode(' ', $image_array[0])[0];
+                                                            ?>
+                                                                <img src="uploads/<?= $first_image;?>" width="50px" height="50px" alt="<?= $item['name'];?>">
                                                                 <?= $item['name'];?>
                                                             </td>
-                                                            <td class="align-middle">
-                                                                <?= number_format($item['price'],2);?>
+                                                            <td class="align-middle fw-bolder">
+                                                            &#8369; <?= number_format($item['price'],2);?>
                                                             </td>
                                                             <td class="align-middle">
                                                                 x<?= $item['orderQty'];?>
@@ -133,19 +144,16 @@ $data = mysqli_fetch_array($Order_data);
 
                                             ?>
                                         </tbody>
-                                    </table>
-
-                                    <hr>
-                                    <h4>Total Price: <span class="float-end"> <?= number_format($data['total_price']);?></span></h4>
+                                    </table>                                    
+                                    <h6>Shipping Fee  : <span class="float-end fw-normal mb-2">&#8369; <?= number_format($item['fee'],2); ?></span></h6>
+                                    <h5 class="fw-bolder mt-3">Total Price: <span class="float-end">&#8369; <?= number_format($data['total_price'],2);?></span></h5>
                                     <hr>
                                     <label class="fw-bold">Payment Method</label>
-                                    <div class="border p-1 mb-3">
+                                    <div class="border p-1 mb-2">
                                         <?= $data['payment_mode'];?>
-                                    </div>
-                                    
-                                    <label class="fw-bold">Status</label>
-                                    <div class="border p-0 mb-3 text-center">
-                                        
+                                    </div>                             
+                                    <label class="fw-bolder">Status</label>
+                                    <div class="border p-0 mb-2 text-center">                                    
                                         <?php
                                             if($data['status'] == 0) {
 

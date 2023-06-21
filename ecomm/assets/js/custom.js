@@ -26,6 +26,8 @@ $(document).ready(function(){
         }
     });
 
+    
+
     // This part is for add to card button
     $(document).on('click','.addToCartbtn', function(e) {
         e.preventDefault();
@@ -170,4 +172,9 @@ $(document).ready(function(){
         });
     });
 
+    
+
+    
 });
+
+

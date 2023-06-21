@@ -1,21 +1,246 @@
-    <!-- Navbar -->
-    <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl" id="navbarBlur" navbar-scroll="true">
-      <div class="container-fluid py-1 px-3">
-        <!-- <nav aria-label="breadcrumb">
-          <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
-            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Template</li>
-          </ol>
-          <h6 class="font-weight-bolder mb-0">Template</h6>
-        </nav> -->
-        <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-            <div class="input-group input-group-outline">
-              <label class="form-label">Type here...</label>
-              <input type="text" class="form-control">
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </nav>
+            <?php
+                if(isset($_SESSION['auth'])) {
+            ?>
+                <!-- Sidebar -->
+                <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                    <!-- Sidebar - Brand -->
+                    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+                        <div class="sidebar-brand-icon">
+                            <!-- <i class="fas fa-laugh-wink"></i> -->
+            <?php
+                            $systemlogo = systemlogo();
+                            if(mysqli_num_rows($systemlogo) > 0) {
+                                $data = mysqli_fetch_array($systemlogo);
+            ?>
+                                <img src="../assets/images/<?= $data['business_logo'] ?>" width="50px" height="50px">
+            <?php
+                            }
+            ?>
+                        </div>
+                        <div class="sidebar-brand-text mx-3">ApoBangpo Merch</div>
+                    </a>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider my-0">
+                    <!-- Nav Item - Dashboard -->
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.php">
+                            <i class="fas fa-fw fa-tachometer-alt"></i>
+                            <span>Dashboard</span></a>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Interface
+                    </div>
+                    <!-- Nav Item - Utilities Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                            aria-expanded="true" aria-controls="collapseUtilities">
+                            <i class="fas fa-fw fa-wrench"></i>
+                            <span>Order Management</span>
+                        </a>
+                        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                            data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Check Orders</h6>
+                                <a class="collapse-item" href="orders.php"><i class="fas fa-fw fa-calendar" ></i>Today's Orders<?php countOrders();?></a>
+                                <a class="collapse-item" href="order_history.php"><i class="fas fa-fw fa-truck"></i> Delivered Orders <?php countDeliveredOrders(); ?></a>
+                                <a class="collapse-item" href="cancelled_orders.php"><i class="fas fa-fw fa-ban"></i> Cancelled Orders <?php countCancelledOrders(); ?></a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Addons
+                    </div>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                            aria-expanded="true" aria-controls="collapsePages">
+                            <i class="fas fa-fw fa-folder"></i>
+                            <span>Pages</span>
+                        </a>
+                        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Category</h6>
+                                <a class="collapse-item" href="category.php"><i class="fas fa-fw fa-list"></i> Categories List</a>
+                                <div class="collapse-divider"></div>
+                                <h6 class="collapse-header">Products</h6>
+                                <a class="collapse-item" href="products.php"><i class="fas fa-fw fa-shopping-bag"></i> Product List</a>
+                                <div class="collapse-divider"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
+                            aria-expanded="true" aria-controls="collapsePages">
+                            <i class="fas fa-fw fa-folder"></i>
+                            <span>Feedback</span>
+                        </a>
+                        <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Feedback Form Data</h6>
+                                <a class="collapse-item" href="feedback.php"><i class="fas fa-fw fa-comment"></i> Feedback</a>
+                                <a class="collapse-item" href="normalize_data.php"><i class="fas fa-fw fa-star"></i> K-mean cluster</a>
+
+                                <div class="collapse-divider"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Nav Item - Charts -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="chart.php">
+                            <i class="fas fa-fw fa-chart-area"></i>
+                            <span>Charts</span></a>
+                    </li>
+                    <!-- Nav Item - Tables -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="table.php">
+                            <i class="fas fa-fw fa-table"></i>
+                            <span>Tables</span></a>
+                    </li>
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Maintenance
+                    </div>
+                    <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="true" aria-controls="collapseTwo">
+                            <i class="fas fa-fw fa-cog"></i>
+                            <span>Reports</span>
+                        </a>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <h6 class="collapse-header">Report Stocks and Sales</h6>
+                                <a class="collapse-item" href="sales_report.php"><i class="fas fa-fw fa-chart-line"></i> Sales Report</a>
+                                <a class="collapse-item" href="inventory_report.php"><i class="fas fa-fw fa-boxes"></i> Inventory Report</a>
+                                <a class="collapse-item" href="verified_customer.php"><i class="fas fa-fw fa-envelope"></i> Verified Email</a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- Nav Item - User List -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="user.php">
+                            <i class="fas fa-fw fa-users"></i>
+                            <span>User list</span></a>
+                    </li>
+                    <!-- Nav Item - Settings -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="system_info.php">
+                            <i class="fas fa-fw fa-cogs"></i>
+                            <span>Settings</span></a>
+                    </li>
+                    <!-- Divider -->
+                    <hr class="sidebar-divider d-none d-md-block">
+                    <!-- Sidebar Toggler (Sidebar) -->
+                    <div class="text-center d-none d-md-inline">
+                        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                    </div>
+            </ul>
+            <!-- End of Sidebar -->
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <ul class="navbar-nav ml-auto">
+
+                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </a>
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                    aria-labelledby="searchDropdown">
+                                    <form class="form-inline mr-auto w-100 navbar-search">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-light border-0 small"
+                                                placeholder="Search for..." aria-label="Search"
+                                                aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            <div class="topbar-divider d-none d-sm-block"></div>
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow mr-lg-5">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?=  $_SESSION['auth_user']['name'];?></span>
+    <?php
+                                        $icon = getAllAdmin();
+                                        if(mysqli_num_rows($icon) > 0) {    
+                                            $data = mysqli_fetch_array($icon);  
+    ?>
+                                        <img class="img-profile rounded-circle" src="img/<?= $data['avatar']; ?>">
+    <?php 
+                                        } 
+    ?>
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="profile.php">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item" href="system_info.php">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Settings
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Activity Log
+                                    </a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Logout
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    <!-- End of Topbar -->
+                    <!-- Scroll to Top Button-->
+                    <a class="scroll-to-top rounded" href="#page-top">
+                        <i class="fas fa-angle-up"></i>
+                    </a>
+<?php 
+                        }
+?>
+                    <!-- Logout Modal-->
+                    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to logout?</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">Logging out will end your current session. Are you sure you want to proceed?</div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-warning" type="button" data-dismiss="modal">Cancel</button>
+                                    <!-- <a class="btn btn-primary" href="login.html">Logout</a> -->
+                                    <a class="btn btn-primary" href="../admin-login.php">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>

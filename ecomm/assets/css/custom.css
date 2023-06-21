@@ -1,7 +1,13 @@
+:root {
+    --error-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+}
+
 * {
-    /* font-family: 'Lora', serif; */
-    font-family: 'Cabin', sans-serif;
-    
+    font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    /* font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif; */
+    /* outline: 1px dotted green;  */
 }
 a {
     text-decoration: none;
@@ -15,9 +21,10 @@ a {
 .bg-f2f2f2 {
     background-color: #f2f2f2;
 }
-.navbar {
+.navbar{
     /* background: linear-gradient(to left, #EC9F05 , #FF4E00); */
-    background: linear-gradient(to right, #ee2f52 , #ee2f52);
+   background: linear-gradient(to right, #ee2f52 , #ee2f52);
+/* background: linear-gradient(to right, #ffe4e1 , #ffe4e1); */
 }
 .navbar .navbar-nav .nav-link{
     color: #000000;
@@ -31,14 +38,21 @@ a {
 }
 ion-icon {
     font-size: 24px;
+    vertical-align: middle;
 }
+.label-icon {
+    vertical-align: middle;
+}
+
 .bg-primary {
-    background: linear-gradient(to right, #6b1525 , #3f0e17 );
+    background: linear-gradient(to right, #faf5f5 , #faf5f5);
+/*    background: linear-gradient(to right, #6b1525 , #3f0e17 );*/
     /* background: linear-gradient(to right, #F5D020, #F5D020); */
+
 }
 .btn {
     /* color: #000000; */
-    background: #f85170;
+    background: #ef8891;
     color: #414141;
     border-radius: 5x;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -52,17 +66,19 @@ ion-icon {
     box-shadow: 0 0 20px rgba(207, 37, 68 , 0.5);
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
-    background: #ee2f52;
+    background: #fc7b86;
 }
 .bg-dark {
-    background: linear-gradient(to right, #6b1525 , #3f0e17 );
+/*    background: linear-gradient(to right, #33383b , #3f0e17 );*/
+/*    background: linear-gradient(to right, #ffe4e1 , #ffe4e1);*/
+background: linear-gradient(to right, #faf5f5 , #faf5f5);
 }
 
 /* This is for the input textfield in registered to have a shadow arround */
 .form-control, .form-check-input{
     
     border-radius: 5px;
-    order: solid 1.5px #D3D3D3;
+    border: solid 1.5px #D3D3D3;
     -webkit-transition: 1s; /* Safari */
     transition: 1s;
 }
@@ -85,7 +101,7 @@ ion-icon {
 
 .form-select{
     border-radius: 5px;
-    order: solid 1.5px #D3D3D3;
+    border: solid 1.5px #D3D3D3;
     -webkit-transition: 1s; /* Safari */
     transition: 1s;
 }
@@ -97,4 +113,316 @@ ion-icon {
     box-shadow: 0 0 5pt 2pt #D3D3D3;
     outline-width: 0px;
 }
+
+.form-field {
+    margin-bottom: 5px;
+
+}
+
+.form-field label {
+    display: block;
+    color: #777;
+    margin-bottom: 5px;
+}
+/* 
+.form-field input {
+    border: solid 2px #f0f0f0;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+} */
+
+.form-field input:focus {
+    outline: none;
+}
+
+.form-field.error input {
+    border-color: var(--error-color);
+}
+
+.form-field.success input {
+    border-color: var(--success-color);
+}
+
+
+.form-field small {
+    color: var(--error-color);
+}
+p {
+    font-family: 'Cabin', sans-serif;
+}
+.itemhere{
+    width:100%;
+    height:auto;
+  }
+
+  .box {
+    height: 300px;
+    /* width: 10px; */
+  }
+  .border-image {
+    height: 200px;
+    
+}
+
+.pp1, .pp2, .pp3, .pp4, .pp5, .pp6, .pp7, .pp8, .tc1, .tc2, .tc3, .textfontsize{
+    color: #777;
+    margin: 3px;
+}
+p, ul li, ol li{
+    text-align: justify;
+    font-size: 14px;
+    margin: 3px;
+    padding: 1px;
+}
+p {
+    margin-bottom: 3px;
+}
+.privacy_protection_heading_1, .terms_and_condition, .myProfile{
+    text-align: center;
+    font-size: 20px;
+    padding: 2px;
+    
+}
+.update {
+    font-size: 12px;
+}
+
+/* CSS */
+
+/* .sidebar {
+    height: 200px;
+    width: 160px;
+    position: fixed;
+    margin: 10px 5px 5px 5px;
+    top: 5;
+    left: 0;
+    padding-top: 40px;
+    background-color: lightblue;
+    } */
+    .sidebarx {
+        width: 200px;
+        position: fixed;
+        margin: 10px 10px 5px 5px;
+        top: 5;
+        left: 50;
+        
+    }
+    
+    .sidebar div {
+    padding: 8px;
+    font-size: 14px;
+    display: block;
+    
+    }
+    
+    .body-text {
+    margin-left: 200px;
+    font-size: 18px;
+    }
+
+    textarea[name=foo] {
+        resize: none;
+      }
+
+      input {
+        border: none;
+        background: transparent;
+    }
+
+    .profile {
+        margin: 5px;
+    }
+    .labelName {
+        padding: 2px 0px 0px 0px;
+    }
+    input {
+        width: 320px;
+    }
+    
+    a {
+        color: #00A0C6;
+        text-decoration: none;
+        
+    }
+    
+    a:hover {
+        color:#00A0C6; 
+        text-decoration:none; 
+        cursor:pointer;  
+    }
+    .border {
+        border-top: 1px soft gray;
+        margin: 2px;
+        padding: 2px;
+    }
+
+    /* Hover effect on sidebar link */
+    .hover-underline-animation {
+        display: inline-block;
+        position: relative;
+        color: #0087ca;
+      }
+      
+      .hover-underline-animation::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        transform: scaleX(0);
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #9eb8c5;
+        transform-origin: bottom right;
+        transition: transform 0.25s ease-out;
+      }
+      
+      .hover-underline-animation:hover::after {
+        transform: scaleX(1);
+        transform-origin: bottom left;
+      }
+      .inputPass {
+        width: 230px;
+        border-radius: 10px;
+        border: 1px solid darkblue;
+        background: rgb(243, 241, 241);
+      }
+      .newForm {
+        text-align: center;
+        height: 250px;
+        width: 300px;
+      }
+
+      
+/* CSS */
+.exzoom_img_box {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    /* padding: 5px; */
+    
+  }
+  
+  .exzoom_img_ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+     overflow-x:visible;
+  }
+  
+  .exzoom_img_ul li {
+    margin-right: 10px;
+  }
+  
+  .exzoom_img_ul li:last-child {
+    margin-right: 0;
+  }
+  
+  .exzoom_nav {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .exzoom_nav span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    margin-right: 0px;
+    cursor: pointer;
+  }
+  
+  .exzoom_nav span.active {
+    background-color: #333;
+    border-color: #333;
+  }
+
+  select.form-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: none;
+}
+
+.all-btn {
+    position: absolute;
+    left: 0;
+    opacity: 0.7;
+    z-index: -1;
+  }
+
+
+
+/* button */
+/* .btn {
+    width: 100%;
+    padding: 3%;
+    background: #007bff;
+    border-bottom: 2px solid #007bff;
+    border-top-style: none;
+    border-right-style: none;
+    border-left-style: none;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background: #0069d9;
+    cursor: pointer;
+}
+
+.btn:focus {
+    outline: none;
+} */
+
+
+/*  Media Query */
+/* Styles for devices with a max-width of 600px */
+@media screen and (max-width: 600px) {
+    .bg-primary {
+        background: linear-gradient(to right, #faf5f5 , #faf5f5);
+    }
+    .navbar .navbar-nav .nav-link {
+        font-size: 1em;
+    }
+}
+
+/* Styles for devices with a max-width of 768px */
+@media screen and (max-width: 768px) {
+    .bg-primary {
+        background: linear-gradient(to right, #faf5f5 , #faf5f5);
+    }
+    .navbar .navbar-nav .nav-link {
+        font-size: 1.1em;
+    }
+}
+
+/* Styles for devices with a max-width of 992px */
+@media screen and (max-width: 992px) {
+    .bg-primary {
+        background: linear-gradient(to right, #faf5f5 , #faf5f5);
+    }
+    .navbar .navbar-nav .nav-link {
+        font-size: 1.2em;
+    }
+}
+
+/* Styles for devices with a max-width of 1200px */
+@media screen and (max-width: 1200px) {
+    .bg-primary {
+        background: linear-gradient(to right, #faf5f5 , #faf5f5);
+    }
+    .navbar .navbar-nav .nav-link {
+        font-size: 1.3em;
+    }
+}
+
+.carousel-inner {
+    background-color: #f5f5f5; /* Set the background color */
+}
+
 

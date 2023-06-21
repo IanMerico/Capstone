@@ -1,16 +1,71 @@
-<nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow sticky-top">
+<nav class="navbar navbar-expand-sm navbar-dark sticky-top shadow sticky-top p-1">
   <div class="container">
-    <a class="navbar-brand" href="index.php">ECOMMERCE PROJECT</a>
+
+         
+        <?php
+       if(isset($_SESSION['auth'])) {
+        $systemlogo = systemlogo();
+    
+        if(mysqli_num_rows($systemlogo) > 0) {
+            $data = mysqli_fetch_array($systemlogo);
+            $logo_src = "assets/images/".$data['business_logo'];
+        }
+        ?>
+
+        <a class="navbar-brand text-dark" href="index.php">
+        <img src="<?= $logo_src ?>" width="50px" height="50px">
+        ApoBangpo Merch PH
+        </a>
+
+        <?php
+      
+      }
+     else {
+
+      $system_info = geticon("system_info");
+      if ($system_info && mysqli_num_rows($system_info) > 0) {
+          $row = mysqli_fetch_assoc($system_info);
+          $business_logo = $row['business_logo'];
+          $icon_path = "assets/images/" . $business_logo;
+      } else {
+          $icon_path = "assets/images/297979668_103856492433245_4893127009659140128_n-removebg-preview.png";
+      }
+      
+      ?>
+
+      
+
+
+      <a class="navbar-brand text-dark" href="index.php">
+      <img src="<?= $icon_path ?>" width="50px" height="50px">
+      ApoBangpo Merch PH
+      </a>
+
+      <?php
+    }
+
+        ?>
+
+        
+
+        
+       
+    
+      
+    <!-- <img src="assets/images/297979668_103856492433245_4893127009659140128_n-removebg-preview.png" width="50px" height="50px">  -->
+    
+
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="index.php">Home</a>
+          <a class="nav-link home-sharp fw-bold" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="categories.php">Collections</a>
+          <a class="nav-link fw-bold" href="categories.php">Collections</a>
         </li>
         <li class="nav-item">
           <div id="navcount">
@@ -47,14 +102,28 @@
         if(isset($_SESSION['auth'])) {
 ?>
         
-        <li class="nav-item dropdown" href="">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <?=  $_SESSION['auth_user']['name']; ?> 
+        <li class="nav-item dropdown ms-auto btn-sm p-0" href="">
+          <a class="nav-link dropdown-toggle fw-bold" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <span></span><?=  $_SESSION['auth_user']['name']; ?> 
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="account_settings.php">My profile</a></li>
-            <li><a class="dropdown-item" href="my_orders.php">My Orders</a></li>
-            <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+          <ul class="dropdown-menu dropdown-menu-info btn-sm p-0" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="nav-link  dropdown-item" href="account.php?=profile">
+                <ion-icon name="person-circle-sharp" class="text-right"></ion-icon> 
+                <label class="label-icon">My Account</label> 
+              </a>
+            </li>
+            <li><a class="nav-link  dropdown-item" href="my_orders.php">
+                    <ion-icon name="list-sharp" class="text-right"></ion-icon>
+                    <label class="label-icon"> My Orders</label> 
+                </a>
+            </li>
+            <div class="dropdown-divider"></div>
+            <li>
+              <a class="nav-link  dropdown-item cart-sharp" href="logout.php">
+                <ion-icon name="log-out-sharp"></ion-icon>
+                <label class="label-icon">Logout</label> 
+              </a>
+            </li>
           </ul>
         </li>
 <?php
@@ -63,7 +132,7 @@
 ?>
         <li class="nav-item">
           <a class="nav-link" href="register.php">Register</a>
-        </li>
+        </li> 
         <li class="nav-item">
           <a class="nav-link" href="login.php">Login</a>
         </li>

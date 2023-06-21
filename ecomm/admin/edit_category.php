@@ -1,29 +1,28 @@
 <?php 
-
-include('../middleware/adminMidleware.php');
-include('includes/header.php');
+    $titlePage = "Edit Category";
+    include('../middleware/adminMidleware.php');
+    include('includes/header.php');
+    include('includes/navbar.php');
 
 ?>
 
-    <div class="container">
+    <div class="container overflow-scroll">
         <div class="row">
             <div class="col-md-12">
 <?php
                 if(isset($_GET['id'])) {
                     $id = $_GET['id'];
                     $category_id = getbyID("categories", $id);
-
                     if(mysqli_num_rows($category_id) > 0) {    
                         $data = mysqli_fetch_array($category_id);    
 ?>
-
                 <div class="card">
-                    <div class="card-header">
-                        <h4>Edit Category
+                    <div class="card-header pb-1">
+                        <h4 class="m-0 font-weight-bold text-dark">Edit Category
                             <a href="category.php" class="btn btn-sm btn-primary float-end">Back</a>
                         </h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body pt-1">
                         <form action="code.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
@@ -46,25 +45,13 @@ include('includes/header.php');
                                 <input type="hidden" name="old_image" value="<?= $data['image'] ?>">
                                 <img src="../uploads/<?= $data['image'] ?>" alt="<?= $data['image'] ?>" class="category_image">
                             </div>
-                            <div class="col-md-12">
-                                <label for="">Meta Title</label>
-                                <input type="text" name="meta_title" value="<?= $data['meta_title'] ?>" placeholder="Enter meta title" class="form-control">
-                            </div>
-                            <div class="col-md-12">
-                                <label for="">Meta Description</label>
-                                <textarea rows="3" name="meta_description" value="<?= $data['meta_description'] ?>" placeholder="Enter meta description" class="form-control"><?= $data['meta_description'] ?></textarea>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="">Meta Keywords</label>
-                                <textarea rows="3" name="meta_keywords" value="<?= $data['meta_keywords'] ?>" placeholder="Enter meta keywords" class="form-control"><?= $data['meta_keywords'] ?></textarea>
-                            </div>
                             <div class="col-md-6">
                                 <label for="">Status</label>
-                                <input type="checkbox" name="status"  <?= $data['status'] ? "checked" : ""?>>
+                                <input type="checkbox" name="status" <?= $data['status'] ? "checked" : ""?> onclick="toggleCheckboxes(this)">
                             </div>
                             <div class="col-md-6">
                                 <label for="">Popular</label>
-                                <input type="checkbox" name="popular" <?= $data['popular'] ? "checked" : ""?> >
+                                <input type="checkbox" name="popular" <?= $data['popular'] ? "checked" : ""?> onclick="toggleCheckboxes(this)">
                             </div>
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary" name="update_category_btn">Update</button>
@@ -73,7 +60,6 @@ include('includes/header.php');
                         </form>
                     </div>
                 </div>
-
 <?php
                     } else {
                         echo "Category not found";
@@ -85,5 +71,4 @@ include('includes/header.php');
             </div>
         </div>
     </div>
-
 <?php include('includes/footer.php');?>
